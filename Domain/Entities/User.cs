@@ -10,16 +10,16 @@ using SharedKernel.Interfaces;
 
 namespace Domain.Entities
 {
-    class User : EntityBase<Guid>, IAggregateRoot
+    public class User : EntityBase<Guid>, IAggregateRoot
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string Email { get; private set; }
         public string Mobile { get; private set; }
-        public bool IsActive { get; private set; }
         public string HashedPassword { get; private set; }
         public string? ResetPasswordCode { get; private set; }
         public DateTime? ResetPasswordExpriy { get; private set; }
+        public UserVerification UserVerification { get; set; }
         public Guid Role { get; private set; }
  
         public User(string firstName, string lastName, string email, string password, bool isAdmin) : this()
@@ -28,8 +28,6 @@ namespace Domain.Entities
             SetLastName(lastName);
             SetEmail(email);
             SetPassword(password);
-            SetIsActive(true);
-            SetIsAdmin(isAdmin);
         }
 
         public User SetUserInfo(string firstName, string lastName, string email, string mobile)
@@ -94,13 +92,6 @@ namespace Domain.Entities
             return this;
         }
 
-        public User SetIsActive(bool isActive)
-        {
-            IsActive = isActive;
-
-            return this;
-        }
-
         public User ValidateMobile(string mobile)
         {
             Guard.Against.NullOrWhiteSpace(mobile, nameof(mobile));
@@ -130,13 +121,7 @@ namespace Domain.Entities
         {
             ValidatePassword(loginPassword);
             return this;
-        }
 
-        public User ValidateOTP(string otp)
-        {
-            if (VerifyCode == otp)
-                IsActive = true;
-            return this;
         }
 
         public User ValidatePassword(string loginPassword)
@@ -163,13 +148,6 @@ namespace Domain.Entities
             throw new ArgumentException("Invalid Token");
         }
 
-        public User ValidateActive()
-        {
-            if (IsActive)
-                return this;
-            throw new ArgumentException("User is not active!");
-        }
-
         public User SetRole(Guid role)
         {
             Role = role;
@@ -181,11 +159,7 @@ namespace Domain.Entities
             return Convert.ToBase64String(SHA1.HashData(Encoding.UTF8.GetBytes(password)));
         }
 
-
-
-        public override string ToString() => $"{FirstName} {LastName}";
-
-        private User() // required for EF
+        private User() 
         {
             SetId(Guid.Empty);
         }
