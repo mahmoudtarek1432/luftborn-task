@@ -16,7 +16,7 @@ public abstract class EntityBase<TId>
   public DateTime ModifiedAt { get; private set; }
   public Guid? ModifiedBy { get; private set; }
 
-  public List<INotification> Events = new();
+  //public List<INotification> Events = new();
 
   public void SetId(TId id)
   {

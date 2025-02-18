@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
-    class ApplicationDatabase : DbContext
+    public class ApplicationDatabase : DbContext
     {
         public DbSet<User> Users { get; set; }
         public ApplicationDatabase(DbContextOptions opt) : base(opt)
