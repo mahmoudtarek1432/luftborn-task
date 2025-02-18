@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SharedKernel.Guards
 {
-    class BusinessLogicException : Exception
+    public class BusinessLogicException : Exception
     {
         public BusinessLogicException()
         {

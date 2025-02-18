@@ -18,12 +18,8 @@ namespace Domain.Entities
         public string Mobile { get; private set; }
         public bool IsActive { get; private set; }
         public string HashedPassword { get; private set; }
-        public string VerifyCode { get; private set; }
-        public int VerifyTries { get; private set; }
-        public DateTime VerifyTime { get; private set; }
         public string? ResetPasswordCode { get; private set; }
         public DateTime? ResetPasswordExpriy { get; private set; }
-        public bool IsAdmin { get; private set; }
         public Guid Role { get; private set; }
  
         public User(string firstName, string lastName, string email, string password, bool isAdmin) : this()
@@ -42,15 +38,6 @@ namespace Domain.Entities
             SetLastName(lastName);
             SetEmail(email);
             SetMobile(mobile);
-
-            return this;
-        }
-
-        public User SetVerifyCode(string verifyCode)
-        {
-            VerifyCode = verifyCode;
-            VerifyTime = DateTime.UtcNow;
-            VerifyTries++;
 
             return this;
         }
@@ -103,13 +90,6 @@ namespace Domain.Entities
         public User SetEmail(string email)
         {
             Email = email;
-
-            return this;
-        }
-
-        public User SetIsAdmin(bool isAdmin)
-        {
-            IsAdmin = isAdmin;
 
             return this;
         }
