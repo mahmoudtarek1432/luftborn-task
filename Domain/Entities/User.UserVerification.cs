@@ -17,6 +17,11 @@ namespace Domain.Entities
         private int CodeExpiryTime = 10; //in minutes
         public bool IsActive {get; set;}
 
+        public UserVerification(bool isActive)
+        {
+            IsActive = isActive;
+        }
+
         public UserVerification SetVerifyCode(string verifyCode)
         {
             VerifyCode = verifyCode;

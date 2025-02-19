@@ -17,12 +17,10 @@ namespace Domain.Entities
         public string Email { get; private set; }
         public string Mobile { get; private set; }
         public string HashedPassword { get; private set; }
-        public string? ResetPasswordCode { get; private set; }
-        public DateTime? ResetPasswordExpriy { get; private set; }
         public UserVerification UserVerification { get; set; }
         public Guid Role { get; private set; }
  
-        public User(string firstName, string lastName, string email, string password, bool isAdmin) : this()
+        public User(string firstName, string lastName, string email, string password) : this()
         {
             SetFirstName(firstName);
             SetLastName(lastName);
@@ -132,22 +130,6 @@ namespace Domain.Entities
             throw new ArgumentException("Wrong Password");
         }
 
-        public User CreatePasswordResetHash()
-        {
-            Random random = new Random();
-            var hash = Convert.ToBase64String(SHA1.HashData(Encoding.UTF8.GetBytes(random.Next(1000000, 9999999).ToString())));
-            ResetPasswordCode = hash;
-            ResetPasswordExpriy = DateTime.UtcNow.AddHours(1);
-            return this;
-        }
-
-        public User ValidateResetToken(string token)
-        {
-            if (ResetPasswordCode == token && ResetPasswordExpriy > DateTime.UtcNow)
-                return this;
-            throw new ArgumentException("Invalid Token");
-        }
-
         public User SetRole(Guid role)
         {
             Role = role;
@@ -157,6 +139,12 @@ namespace Domain.Entities
         private string PasswordHash(string password)
         {
             return Convert.ToBase64String(SHA1.HashData(Encoding.UTF8.GetBytes(password)));
+        }
+
+        public User SetUserVerification(UserVerification userVerification)
+        {
+            UserVerification = userVerification;
+            return this;
         }
 
         private User() 
