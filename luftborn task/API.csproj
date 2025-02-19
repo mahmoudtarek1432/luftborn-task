@@ -7,4 +7,8 @@
     <RootNamespace>luftborn_task</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IOC\IOC.csproj" />
+  </ItemGroup>
+
 </Project>
