@@ -54,9 +54,6 @@ export class LoginComponent {
                           this.userState.setState(r.userInfo)
                           this.router.navigate(['/dashboard'])
                         }
-                        else{
-                          this.router.navigate(['/auth/otp'])
-                        }
                       }
                     })
     
@@ -64,10 +61,6 @@ export class LoginComponent {
 
   navigateSignUp(){
     this.router.navigate(['/auth/register'])
-  }
-
-  navigateforgotPassword(){
-    this.router.navigate(['/auth/forgotPassword'])
   }
 
   get email(){

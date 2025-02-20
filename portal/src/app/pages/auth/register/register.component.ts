@@ -55,7 +55,7 @@ export class RegisterComponent {
                     .subscribe(r => 
                       {
                         if(r.isSuccess){
-                          this.router.navigate(['/auth/otp'])
+                          this.router.navigate(['/auth/login'])
                         } 
                       })
   }
