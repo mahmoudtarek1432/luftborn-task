@@ -20,4 +20,8 @@ export class UserInfoService {
   setState(user:UserLogin){
     return this.userSubject.next(user)
   }
+
+  remove(){
+    this.userSubject.next({}as UserLogin)
+  }
 }

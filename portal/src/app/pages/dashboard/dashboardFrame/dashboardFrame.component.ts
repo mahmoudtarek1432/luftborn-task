@@ -4,6 +4,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { AuthService } from '../../../services/repos/Auth/auth.service';
 
 @Component({
   selector: 'app-dashboardFrame',
@@ -14,11 +15,15 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 export class DashboardComponent {
   isCollapsed = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService) {
     
   }
 
   navigateUsers(){
     this.router.navigate(['dashboard/users']);
+  }
+
+  logout(){
+    this.authService.Logout()
   }
 }

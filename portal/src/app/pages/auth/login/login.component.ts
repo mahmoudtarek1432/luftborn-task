@@ -51,7 +51,7 @@ export class LoginComponent {
                       {
                         if(r.userInfo.isActive){
                           localStorage.setItem(authConstants.AUTH_TOKEN,r.token)
-                          console.log(r)
+                          localStorage.setItem(authConstants.USER, JSON.stringify(r.userInfo))
                           this.userState.setState(r.userInfo)
                           this.router.navigate(['/dashboard'])
                         }

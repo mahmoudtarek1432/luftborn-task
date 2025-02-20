@@ -49,7 +49,8 @@ namespace Application.Service
                     Id = u.Id,
                     Email = u.Email,
                     Role = u.Role,
-                    Name = u.ToString()
+                    Name = u.ToString(),
+                    Mobile = u.Mobile
                 }
             );
         }

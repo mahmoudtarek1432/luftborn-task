@@ -16,6 +16,9 @@
           <nz-icon nzType="reconciliation" nzTheme="outline" />
           <span>{{ 'dashboardPage.users' | translate}}</span>
         </li>
+        <li nz-menu-item (click)="logout()">
+          Log out
+        </li>
       </ul>
     </nz-sider>
     <nz-layout style="width: auto;">
