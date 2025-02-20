@@ -14,7 +14,9 @@
             <td>{{data.email}}</td>
             <td>{{data.mobile}}</td>
             <td>
-                <nz-select [(ngModel)]="data.selectedRole" name="role" nzAllowClear>
+                <nz-select [nzDisabled]="!userCanEdit()" 
+                           [(ngModel)]="data.selectedRole"
+                           name="role" nzAllowClear>
                     <nz-option 
                         *ngFor="let role of roles"
                         [nzLabel]="role"
@@ -23,7 +25,7 @@
                     </nz-option>
                     </nz-select>
             </td>
-            <td *ngIf="userInfo.id != data.id">
+            <td *ngIf="userCanEdit() && rowCanBeEdited(data.id)">
                 <button nz-button nzType="default" [disabled]="data.selectedRole == data.role">Change Role</button>
                 <nz-divider nzType="vertical"></nz-divider>
                 <a (click)="deleteUser(data.id)">Delete</a>

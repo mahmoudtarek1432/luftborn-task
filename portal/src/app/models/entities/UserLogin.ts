@@ -6,4 +6,5 @@ export interface UserLogin {
     mobile: string;
     isActive: boolean;
     isAdmin: boolean;
+    role: 'ADMIN' | 'USER'
 }

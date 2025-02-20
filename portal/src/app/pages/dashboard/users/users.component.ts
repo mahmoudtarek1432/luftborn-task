@@ -40,4 +40,12 @@ export class UsersComponent {
                       }
                     });
   }
+
+  userCanEdit(){
+    return this.userInfo.role == 'ADMIN'
+  }
+
+  rowCanBeEdited(userRowId: string){
+    return userRowId != this.userInfo.id
+  }
 }
