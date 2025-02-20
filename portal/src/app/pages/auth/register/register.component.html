@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="divider" nz-flex nzAlign="center">
+      <div class="banner">
+        <div class="glass-banner">
+  
+        </div>
+      </div>
+        <div class="register-card">
+          <div class="header">
+              <h1 class="font-Primary">{{ 'registerPage.header' | translate}}</h1>
+          </div>
+          <div class="register-form" >
+              <form nz-form [formGroup]="registerForm" class="register-form" (ngSubmit)="submitForm()">
+                
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="{{ 'registerPage.form.nameErrors.required' | translate}}">
+                      <nz-input-group>
+                          <nz-form-label>{{ 'registerPage.form.name' | translate }}</nz-form-label>
+                          <div class="name-wrp">
+                            <input nz-col nzSpan="12" type="text" nz-input formControlName="businessNameEN" placeholder="{{'registerPage.form.namePlaceholderEN' | translate}}" />  
+                            <input nz-col nzSpan="12" type="text" nz-input formControlName="businessNameAR" placeholder="{{'registerPage.form.namePlaceholderAR' | translate}}" />
+                          </div>
+                      </nz-input-group>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-control nzErrorTip="{{ 'registerPage.form.emailErrors.required' | translate}}">
+                      <nz-input-group>
+                          <nz-form-label>{{ 'registerPage.form.email' | translate}}</nz-form-label>
+                          <input type="text" nz-input formControlName="email" placeholder="{{ 'registerPage.form.email' | translate}}" />
+                      </nz-input-group>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <p></p>
+                  <nz-form-item>
+                    <nz-form-control nzErrorTip="{{ 'registerPage.form.mobileErrors.required' | translate}}">
+                      <nz-input-group>
+                          <nz-form-label>{{ 'registerPage.form.mobile' | translate}}</nz-form-label>
+                          <input type="text" nz-input formControlName="mobileNumber" />
+                      </nz-input-group>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <p></p>
+                  <nz-form-item>
+                    <nz-form-control [nzErrorTip]="passTp">
+                      <nz-input-group>
+                          <nz-form-label>{{ 'registerPage.form.password' | translate}}</nz-form-label>
+                        <input type="password" nz-input formControlName="password" />
+                      </nz-input-group>
+                      <ng-template #passTp let-control>
+                        @if (control.errors?.['required']) {
+                          {{ 'registerPage.form.passwordErrors.required' | translate}}
+                        }
+                        @if (control.errors?.['minlength'] != null) {
+                          {{ 'registerPage.form.passwordErrors.minlength' | translate}}
+                        }
+                        @if (control.errors?.['pattern']) {
+                          {{ 'registerPage.form.passwordErrors.pattern' | translate}}                      }
+                      </ng-template>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <p></p>
+                  <nz-form-item>
+                    <nz-form-control nzErrorTip="{{ 'registerPage.form.confirmPasswordErrors.required' | translate}}  ">
+                      <nz-input-group>
+                          <nz-form-label>{{ 'registerPage.form.confirmPassword' | translate}}  </nz-form-label>
+                        <input type="password" nz-input formControlName="confirmPassword" />
+                      </nz-input-group>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <div nz-row class="register-form-margin">
+                    <div>
+                      <a class="register-form-forgot"> {{ 'registerPage.form.forgotPassword' | translate}}</a>
+                    </div>
+                  </div>
+    
+                  <div class="dir-Button">
+                      <button nz-button type="button" (click)="navigateLogin()">{{ 'registerPage.form.logIn' | translate}}</button>
+                      <span class="spliter"></span>
+                      <button nz-button nzType="primary" type="submit" [disabled]="!registerForm.valid" >{{ 'registerPage.form.signUp' | translate}}</button>
+                  </div>
+                </form>
+            
+          </div>
+        </div>
+    </div>
+  </div>
+  

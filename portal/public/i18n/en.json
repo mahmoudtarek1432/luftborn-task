@@ -1,0 +1,117 @@
+{
+    "loginPage":{
+        "header": "Login",
+        "form":{
+            "email": "email",
+            "emailErrors":{
+                "required": "Please input your email in correct format!"
+            },
+            "password": "password",
+            "passwordErrors":{
+                "required": "Please Enter your password",
+                "minlength": "The password should be more than 8 characters",
+                "pattern": "The password should include a character, a digit, and a special character"
+            },
+            "forgotPassword": "Forgot password",
+            "signUp": "Sign Up",
+            "logIn": "Log in"
+        }
+    },
+    "registerPage":{
+        "header": "Register",
+        "form":{
+            "name": "Business Name",
+            "namePlaceholderEN": "English",
+            "namePlaceholderAR": "Arabic",
+            "nameErrors":{
+                "required":"Please input busniness name in english and arabic"
+            },
+            "email": "email",
+            "emailErrors":{
+                "required": "Please input your email in correct format!"
+            },
+            "password": "password",
+            "passwordErrors":{
+                "required": "Please Enter your password",
+                "minlength": "The password should be more than 8 characters",
+                "pattern": "The password should include a character, a digit, and a special character"
+            },
+            "confirmPassword": "Confirmm Password",
+            "confirmPasswordErrors":{
+                "required": "Please Confirm Password"
+            },
+            "mobile": "Mobile",
+            "mobileErrors":{
+                "required":"Please Enter your mobile number"
+            },
+            "forgotPassword": "Forgot password",
+            "signUp": "Sign Up",
+            "logIn": "Log in"
+        }
+    },
+    "otpVerificationPage": {
+        "title": "Please enter the OTP",
+        "resend": "Resend code?"
+    },
+    "forgotPasswordPage": {
+        "title": "Please enter your email address",
+        "backToLogin": "back to login",
+        "submit": "Submit"
+    },
+    "resetPasswordPage": {
+        "title":"Please reset your password",
+        "submit": "Submit",
+        "password": "password",
+            "passwordErrors":{
+                "required": "Please Enter your password",
+                "minlength": "The password should be more than 8 characters",
+                "pattern": "The password should include a character, a digit, and a special character"
+            },
+        "confirmPassword": "Confirmm Password",
+        "confirmPasswordErrors":{
+            "required": "Please Confirm Password"
+        }
+    },
+    "dashboardPage":{
+        "company": "Company Details"
+    },
+    "CompanyPage":{
+        "enName":{
+            "title": "English Name",
+            "error": "This field is Required"
+        },
+        "arName":{
+            "title": "Arabic Name",
+            "error": "This field is Required"
+        },
+        "city":{
+            "title": "City",
+            "error": "This field is Required"
+        },
+        "country":{
+            "title": "country",
+            "error": "This field is Required"
+        },
+        "website":{
+            "title": "Website",
+            "error": "This field is Required"
+        },
+        "street":{
+            "title": "Street",
+            "error": "This field is Required"
+        },
+        "postalCode":{
+            "title": "Postal Code",
+            "error": "This field is Required"
+        },
+        "citySubDivision":{
+            "title": "City Sub Division",
+            "error": "This field is Required"
+        },
+        "registrationNumber":{
+            "title": "Registration Number",
+            "error": "This field is Required"
+        },
+        "submit": "Submit"
+    }
+}

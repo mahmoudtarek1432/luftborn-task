@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="divider" nz-flex nzAlign="center">
+    <div class="banner">
+      <div class="glass-banner">
+
+      </div>
+    </div>
+      <div class="login-card">
+        <div class="header">
+            <h1 class="font-Primary">{{ 'loginPage.header' | translate}}</h1>
+        </div>
+        <div class="login-form" >
+            <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
+                <nz-form-item>
+                  <nz-form-control nzErrorTip="{{ 'loginPage.form.emailErrors.required' | translate}}">
+                    <nz-input-group>
+                        <nz-form-label>{{ 'loginPage.form.email' | translate}}</nz-form-label>
+                        <input type="text" nz-input formControlName="email" placeholder="{{ 'loginPage.form.email' | translate}}" />
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                <p></p>
+                <nz-form-item>
+                  <nz-form-control [nzErrorTip]="passTp">
+                    <nz-input-group>
+                        <nz-form-label>{{ 'loginPage.form.password' | translate}}</nz-form-label>
+                      <input type="password" nz-input formControlName="password" placeholder="Password" />
+                    </nz-input-group>
+                    <ng-template #passTp let-control>
+                      @if (control.errors?.['required']) {
+                        {{ 'loginPage.form.passwordErrors.required' | translate}}
+                      }
+                      @if (control.errors?.['minlength'] != null) {
+                        {{ 'loginPage.form.passwordErrors.minlength' | translate}}
+                      }
+                      @if (control.errors?.['pattern']) {
+                        {{ 'loginPage.form.passwordErrors.pattern' | translate}}                      }
+                    </ng-template>
+                  </nz-form-control>
+                </nz-form-item>
+                <div nz-row class="login-form-margin">
+                  <div>
+                    <a (click)="navigateforgotPassword()" class="login-form-forgot"> {{ 'loginPage.form.forgotPassword' | translate}}</a>
+                  </div>
+                </div>
+  
+                <div class="dir-Button">
+                    <button nz-button type="button" (click)="navigateSignUp()">{{ 'loginPage.form.signUp' | translate}}</button>
+                    <span class="spliter"></span>
+                    <button nz-button nzType="primary" type="submit" [disabled]="!loginForm.valid" >{{ 'loginPage.form.logIn' | translate}}</button>
+                </div>
+              </form>
+        </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+
+
+.header{
+    margin-bottom: 20px;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-color: #152439;
+}
+.divider{
+    height: 100vh;
+}
+
+.banner{
+    flex: 0 0 60%;
+}
+
+.glass-banner{
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 90%;
+    height: 80vh;
+    margin: 0 auto;
+}
+
+.login-card{
+    background-color: #fff;
+    padding: 20px 30px;
+    width: 380px;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+.login-form{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dir-Button{
+    display: flex;
+    margin: 30px 0 0 0;
+}
+
+.login-form-margin{
+}
+
+.login-form-forgot{
+    font-size: 10px;
+    margin-bottom: 10px;
+
+}

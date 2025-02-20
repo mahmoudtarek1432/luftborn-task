@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+$primaryColor: #34C7B3;
+
+.font-Primary{
+    color: #595959;
+}
+
+.ant-input {
+  border-radius: 5px !important;
+}
+
+.spliter{
+    flex: 1 0;
+}
