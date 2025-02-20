@@ -19,6 +19,13 @@ namespace Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasKey(x => x.Id);
+
+            modelBuilder.Entity<User>().HasIndex(x => x.Email)
+                                       .IsUnique();
+
+            modelBuilder.Entity<User>().HasIndex(nameof(User.FirstName),nameof(User.LastName))
+                                       .IsUnique();
+
             modelBuilder.Entity<User>().OwnsOne(x => x.UserVerification,opt =>
             {
                 opt.Property(x => x.VerifyCode).HasColumnName("VerifyCode");

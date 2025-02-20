@@ -49,7 +49,7 @@ namespace Application.Service
         {
             var emailSpec = new UsersFilterByEmailSpec(email);
             
-            var user = await _userRepository.SingleOrDefaultAsync(emailSpec);
+            var user = await _userRepository.FirstOrDefaultAsync(emailSpec);
 
             if (user == null)
                 throw new BusinessLogicException("User not found");

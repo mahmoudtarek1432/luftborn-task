@@ -29,20 +29,20 @@ builder.Services.AddApplicationRepositories();
 //    cfg.AddPolicy(nameof(RoleConstants.ADMIN), policy => policy.RequireRole(nameof(RoleConstants.ADMIN)));
 //});
 
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ksa.Einvoice.Api", Version = "v1" });
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        Description = @"JWT Authorization header using the Bearer scheme.<br /> 
-               Enter 'Bearer' [space] and then your token in the text input below.<br />
-               Example: 'Bearer 12345abcdef'",
-        Name = "Authorization",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
-    });
-});
+//builder.Services.AddSwaggerGen(c =>
+//{
+//    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ksa.Einvoice.Api", Version = "v1" });
+//    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+//    {
+//        Description = @"JWT Authorization header using the Bearer scheme.<br /> 
+//               Enter 'Bearer' [space] and then your token in the text input below.<br />
+//               Example: 'Bearer 12345abcdef'",
+//        Name = "Authorization",
+//        In = ParameterLocation.Header,
+//        Type = SecuritySchemeType.ApiKey,
+//        Scheme = "Bearer"
+//    });
+//});
 
 builder.Services.AddCors(options =>
 {
@@ -70,17 +70,18 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-if (builder.Environment.IsDevelopment())
-{
+//if (builder.Environment.IsDevelopment())
+//{
 
-    app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ksa.Einvoice.Api v1"));
-}
+//    app.UseSwagger();
+//    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ksa.Einvoice.Api v1"));
+//}
 
 app.UseCors(AuthConstants.CORS_POLICY);
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseFastEndpoints();
+app.UseCustomExceptionHandler()
+    .UseFastEndpoints();
 
 app.Run();
