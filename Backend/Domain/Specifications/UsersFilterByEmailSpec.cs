@@ -14,7 +14,8 @@ namespace Domain.Specifications
         public UsersFilterByEmailSpec(string email)
         {
             Query
-                .Where(x => x.Email == email);
+                .Where(x => x.Email == email)
+                ;
         }
     }
 }

@@ -32,6 +32,9 @@ public class Login : Endpoint<LoginRequest, LoginResponse>
 
         var response  = new LoginResponse
         {
+            IsSuccess = true,
+            Message = "Login Successful",
+            StatusCode = StatusCodes.Status200OK,
             Token = result.token,
             UserInfo = new UserInfoDto
             {
@@ -39,7 +42,9 @@ public class Login : Endpoint<LoginRequest, LoginResponse>
                 FirstName = result.user.FirstName,
                 LastName = result.user.LastName,
                 Email = result.user.Email,
-                Mobile = result.user.Mobile
+                Mobile = result.user.Mobile,
+                Role = result.user.Role,
+                IsActive = result.user.UserVerification.IsActive ?? false
             }
         };
 

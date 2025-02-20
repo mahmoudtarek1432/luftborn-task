@@ -164,5 +164,10 @@ namespace Domain.Entities
         {
             SetId(Guid.Empty);
         }
+
+        public override string ToString()
+        {
+            return FirstName + " " + LastName;
+        }
     }
 }

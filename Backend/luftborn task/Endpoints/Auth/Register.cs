@@ -3,6 +3,7 @@ using Application.Service.Abstraction;
 using Domain.Entities;
 using Domain.Repository;
 using FastEndpoints;
+using luftborn_task.Endpoints.Model;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace luftborn_task.Endpoints.Auth
@@ -33,7 +34,11 @@ namespace luftborn_task.Endpoints.Auth
 
             _logger.LogInformation($"User Created, ID: {user.Id}");
 
-            await SendAsync(new BaseResponse { StatusCode = StatusCodes.Status200OK, Message = "User Created"});
+            await SendAsync(new BaseResponse { StatusCode = StatusCodes.Status200OK, 
+                                               Message = "User Created",
+                                               IsSuccess = true,
+                                              
+                                               });
         }
     }
 }

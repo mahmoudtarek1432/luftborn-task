@@ -29,8 +29,8 @@ export class RegisterComponent {
 
   constructor(formBuilder: FormBuilder, private authService: AuthService, private router: Router){
     this.registerForm = formBuilder.group({
-      businessNameEN: ['',[Validators.required]],
-      businessNameAR: ['',[Validators.required]],
+      firstName: ['',[Validators.required]],
+      lastName: ['',[Validators.required]],
       email: ['',[Validators.required,Validators.email]],
       mobileNumber: ['',[Validators.required]],
       password: ['',[Validators.required,Validators.minLength(8)]],
@@ -41,10 +41,8 @@ export class RegisterComponent {
 
   submitForm(){
     let registerRequest = {
-      firstName: "temp",
-      lastName: "temp",
-      companyARName: this.businessNameAR?.value,
-      companyEnName: this.businessNameEN?.value,
+      firstName: this.firstName?.value,
+      lastName: this.lastName?.value,
       password: this.password?.value,
       confirmPassword: this.confirmPassword?.value,
       email: this.email?.value,
@@ -70,12 +68,12 @@ export class RegisterComponent {
     this.router.navigate(['/auth/login'])
   }
 
-  get businessNameEN(){
-    return this.registerForm.get('businessNameEN')
+  get firstName(){
+    return this.registerForm.get('firstName')
   }
 
-  get businessNameAR(){
-    return this.registerForm.get('businessNameAR')
+  get lastName(){
+    return this.registerForm.get('lastName')
   }
 
   get email(){

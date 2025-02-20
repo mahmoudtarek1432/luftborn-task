@@ -20,13 +20,13 @@
     "registerPage":{
         "header": "Register",
         "form":{
-            "name": "Business Name",
-            "namePlaceholderEN": "English",
-            "namePlaceholderAR": "Arabic",
+            "name": "Name",
+            "firstNamePlaceholder": "First",
+            "lastNamePlaceholder": "Last",
             "nameErrors":{
                 "required":"Please input busniness name in english and arabic"
             },
-            "email": "email",
+            "email": "Email",
             "emailErrors":{
                 "required": "Please input your email in correct format!"
             },
@@ -36,7 +36,7 @@
                 "minlength": "The password should be more than 8 characters",
                 "pattern": "The password should include a character, a digit, and a special character"
             },
-            "confirmPassword": "Confirmm Password",
+            "confirmPassword": "Confirm Password",
             "confirmPasswordErrors":{
                 "required": "Please Confirm Password"
             },

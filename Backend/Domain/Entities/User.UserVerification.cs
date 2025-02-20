@@ -10,12 +10,17 @@ namespace Domain.Entities
 {
     public class UserVerification : IValueObject
     {
-        public string VerifyCode { get; private set; }
-        public int VerifyTries { get; private set; }
-        public DateTime VerifyTime { get; private set; }
+        public string? VerifyCode { get; private set; }
+        public int? VerifyTries { get; private set; }
+        public DateTime? VerifyTime { get; private set; }
 
         private int CodeExpiryTime = 10; //in minutes
-        public bool IsActive {get; set;}
+        public bool? IsActive {get; set;}
+
+        public UserVerification() //for EF
+        {
+            
+        }
 
         public UserVerification(bool isActive)
         {
@@ -42,7 +47,7 @@ namespace Domain.Entities
         {
             if (VerifyCode != otp)
                 throw new BusinessLogicException("The Verification Code is not correct");
-            if (VerifyTime.AddMinutes(CodeExpiryTime) < DateTime.UtcNow)
+            if (VerifyTime?.AddMinutes(CodeExpiryTime) < DateTime.UtcNow)
                 throw new BusinessLogicException("Verification code has expired");
 
             IsActive = true;
@@ -52,7 +57,7 @@ namespace Domain.Entities
 
         public UserVerification ValidateUserIsActive()
         {
-            if (IsActive)
+            if (IsActive!.Value)
                 return this;
             throw new BusinessLogicException("User is not active!");
         }

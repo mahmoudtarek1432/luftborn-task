@@ -1,5 +1,6 @@
 ﻿using Application.Models;
 using Application.Service.Abstraction;
+using Domain.Constants;
 using Domain.Entities;
 using Domain.Repository;
 using Domain.Specifications;
@@ -17,9 +18,10 @@ namespace Application.Service
     {
         public IRepository<User> _userRepository;
         public ITokenClaimsService _tokenService;
-        public AuthService(IRepository<User> userRepository)
+        public AuthService(IRepository<User> userRepository, ITokenClaimsService tokenService)
         {
             _userRepository = userRepository;
+            _tokenService = tokenService;
         }
 
         public async Task<User> Register(RegisterRequest model)
@@ -36,6 +38,7 @@ namespace Application.Service
                             .ValidateEmail(model.Email)
                             .ValidateMobile(model.Mobile)
                             .SetMobile(model.Mobile)
+                            .SetRole(RoleConstants.USER)
                             .SetUserVerification(new UserVerification(isActive: true));
 
             var savedUser = await _userRepository.AddAsync(user);
@@ -46,7 +49,7 @@ namespace Application.Service
         {
             var emailSpec = new UsersFilterByEmailSpec(email);
             
-            var user = await _userRepository.FirstOrDefaultAsync<User>(emailSpec);
+            var user = await _userRepository.SingleOrDefaultAsync(emailSpec);
 
             if (user == null)
                 throw new BusinessLogicException("User not found");

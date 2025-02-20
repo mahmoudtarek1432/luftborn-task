@@ -17,8 +17,8 @@
                       <nz-input-group>
                           <nz-form-label>{{ 'registerPage.form.name' | translate }}</nz-form-label>
                           <div class="name-wrp">
-                            <input nz-col nzSpan="12" type="text" nz-input formControlName="businessNameEN" placeholder="{{'registerPage.form.namePlaceholderEN' | translate}}" />  
-                            <input nz-col nzSpan="12" type="text" nz-input formControlName="businessNameAR" placeholder="{{'registerPage.form.namePlaceholderAR' | translate}}" />
+                            <input nz-col nzSpan="12" type="text" nz-input formControlName="firstName" placeholder="{{'registerPage.form.firstNamePlaceholder' | translate}}" />  
+                            <input nz-col nzSpan="12" type="text" nz-input formControlName="lastName" placeholder="{{'registerPage.form.lastNamePlaceholder' | translate}}" />
                           </div>
                       </nz-input-group>
                     </nz-form-control>
@@ -69,9 +69,6 @@
                     </nz-form-control>
                   </nz-form-item>
                   <div nz-row class="register-form-margin">
-                    <div>
-                      <a class="register-form-forgot"> {{ 'registerPage.form.forgotPassword' | translate}}</a>
-                    </div>
                   </div>
     
                   <div class="dir-Button">
