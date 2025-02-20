@@ -2,6 +2,7 @@
 using Domain.Repository;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,12 @@ namespace Infrastructure.Repository
 {
     public class EventStoreMongoRepository : IEventStoreRepository
     {
-        EventStoreDatabase _ctx;
-        public EventStoreMongoRepository()
+        private readonly EventStoreDatabase _ctx;
+        private readonly ILogger _logger;
+        public EventStoreMongoRepository(ILogger logger)
         {
             _ctx = new EventStoreDatabase();
+            _logger = logger;
         }
 
         public async Task<IList<StoredEvent>> All(string aggregateId)
@@ -31,7 +34,14 @@ namespace Infrastructure.Repository
 
         public void Store(StoredEvent theEvent)
         {
-            _ctx.EventStoreDBSet?.InsertOne(theEvent);
+            try
+            {
+                _ctx.EventStoreDBSet?.InsertOne(theEvent);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error, event store is not setup properly");
+            }
         }
     }
 }

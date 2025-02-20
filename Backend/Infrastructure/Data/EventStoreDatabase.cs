@@ -14,7 +14,7 @@ namespace Infrastructure.Data
         public IMongoCollection<StoredEvent> EventStoreDBSet;
         public EventStoreDatabase()
         {
-            var connectionString = Environment.GetEnvironmentVariable("MONGODB_URI");
+            var connectionString = Environment.GetEnvironmentVariable("mongodb://localhost:27017");
             if (connectionString != null)
             {
                 mongoClient = new MongoClient(connectionString);
