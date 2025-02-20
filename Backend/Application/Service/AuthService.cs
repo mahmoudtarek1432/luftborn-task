@@ -26,7 +26,8 @@ namespace Application.Service
 
         public async Task<User> Register(RegisterRequest model)
         {
-            var mobileSpec = new UserMobileExistSpec(model.Mobile);
+
+            var mobileSpec = new UserExistSpec(model.Mobile, model.Email);
             var mobileExist = await _userRepository.AnyAsync(mobileSpec);
 
             if(mobileExist)
@@ -49,7 +50,7 @@ namespace Application.Service
         {
             var emailSpec = new UsersFilterByEmailSpec(email);
             
-            var user = await _userRepository.FirstOrDefaultAsync(emailSpec);
+            var user = await _userRepository.SingleOrDefaultAsync(emailSpec);
 
             if (user == null)
                 throw new BusinessLogicException("User not found");

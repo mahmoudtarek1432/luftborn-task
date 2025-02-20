@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Specifications
 {
-    public class UserMobileExistSpec : Specification<User>
+    public class UserExistSpec : Specification<User>
     {
-        public UserMobileExistSpec(string mobile) {
-            Query.Where(e => e.Mobile == mobile)
+        public UserExistSpec(string mobile, string email) {
+            Query.Where(e => e.Mobile == mobile || e.Email == email)
                  .AsNoTracking();
         }
     }
