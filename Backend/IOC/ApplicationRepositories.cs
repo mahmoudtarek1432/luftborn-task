@@ -1,4 +1,5 @@
 ﻿using Domain.Repository;
+using Infrastructure.Bus;
 using Infrastructure.Repository;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,6 +15,10 @@ namespace IOC
         public static void AddApplicationRepositories(this IServiceCollection services)
         {
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+            services.AddScoped<IEventStoreRepository, EventStoreMongoRepository>();
+
+            services.AddScoped<IEventHandler, InMemoryEventHandler>();
         }
     }
 }

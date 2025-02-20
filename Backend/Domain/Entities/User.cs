@@ -11,8 +11,9 @@ using SharedKernel.Interfaces;
 
 namespace Domain.Entities
 {
-    public class User : EntityBase<Guid>, IAggregateRoot
+    public class User : EntityBase, IAggregateRoot
     {
+        public Guid Id { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string Email { get; private set; }
@@ -38,7 +39,10 @@ namespace Domain.Entities
 
             return this;
         }
-
+        public void SetId(Guid id)
+        {
+            Id = id;
+        }
         public User SetPassword(string password)
         {
             Guard.Against.NullOrWhiteSpace(password, nameof(password));

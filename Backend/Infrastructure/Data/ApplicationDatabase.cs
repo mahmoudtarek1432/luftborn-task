@@ -1,5 +1,9 @@
 ﻿using Domain.Entities;
+using Infrastructure.Bus;
+using Infrastructure.Extentions;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using SharedKernel.Event;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +14,18 @@ namespace Infrastructure.Data
 {
     public class ApplicationDatabase : DbContext
     {
+        private readonly IEventHandler _eventHandler;
+
         public DbSet<User> Users { get; set; }
-        public ApplicationDatabase(DbContextOptions opt) : base(opt)
+        public ApplicationDatabase(DbContextOptions opt, IEventHandler eventHandler) : base(opt)
         {
-            
+            _eventHandler = eventHandler;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Ignore<Event>(); // Ignore Event class used for domain events
+
             modelBuilder.Entity<User>().HasKey(x => x.Id);
 
             modelBuilder.Entity<User>().HasIndex(x => x.Email)
@@ -34,5 +42,15 @@ namespace Infrastructure.Data
                 opt.Property(x => x.IsActive).HasColumnName("IsActive");
             });
         }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            await _eventHandler.PublishDomainEvents(this);
+
+            var result = await base.SaveChangesAsync(cancellationToken);
+            return result;
+        }
+
+
     }
 }

@@ -10,6 +10,7 @@ using FastEndpoints;
 using SharedKernel.Constants;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -54,6 +55,11 @@ builder.Services.AddCors(options =>
                     //TODO: need to change this.
                     builder.AllowAnyOrigin();
                 });
+});
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssemblies(typeof(ApplicationDatabase).Assembly);
 });
 
 

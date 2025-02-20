@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MediatR;
+using SharedKernel.Event;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,21 +9,15 @@ using System.Threading.Tasks;
 namespace Domain.Entities.Base
 {
     
-public abstract class EntityBase<TId>
+public abstract class EntityBase
 {
-  public TId Id { get; private set; }
-
   public DateTime CreatedAt { get; private set; }
   public Guid? CreatedBy { get; private set; }
   public DateTime ModifiedAt { get; private set; }
   public Guid? ModifiedBy { get; private set; }
 
-  //public List<INotification> Events = new();
+  public List<Event> DomainEvents = new();
 
-  public void SetId(TId id)
-  {
-    Id = id;
-  }
 
   public void SetCreatedBy(Guid? id)
   {
@@ -44,6 +40,15 @@ public abstract class EntityBase<TId>
     ModifiedAt = DateTime.Now;
     ModifiedBy = id;
   }
-}
 
+    public void AddDomainEvent(Event eventItem)
+    {
+        DomainEvents.Add(eventItem);
+    }
+
+    public void ClearDomainEvents()
+        {
+            DomainEvents.Clear();
+        }
+    }
 }
