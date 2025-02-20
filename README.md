@@ -21,7 +21,7 @@ some of the Design Patterns used (either implemented by me or used by external/c
 - Intercepting filter (angular guards)
 - Pipline design pattern (custom error handlers and just everything imported in ASP .net 😂)
 - CQRS
-- Event sourcing
+- Event sourcing (document database was used for it)
 - fuctional chaining
 - Dependency Injection
 - Repository
