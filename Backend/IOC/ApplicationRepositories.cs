@@ -1,4 +1,5 @@
-﻿using Domain.Repository;
+﻿using Ardalis.Specification;
+using Domain.Repository;
 using Infrastructure.Bus;
 using Infrastructure.Repository;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,7 @@ namespace IOC
         public static void AddApplicationRepositories(this IServiceCollection services)
         {
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IReadRepository<>), typeof(Repository<>));
 
             services.AddScoped<IEventStoreRepository, EventStoreMongoRepository>();
 

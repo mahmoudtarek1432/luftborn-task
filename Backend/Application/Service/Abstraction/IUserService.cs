@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.Models;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace Application.Service.Abstraction
     public interface IUserService
     {
 
-        public Task<IEnumerable<User>> GetUserList();
+        Task<IEnumerable<UserListingDTO>> GetUserList();
 
         public Task DeleteUser(Guid id);
 
-        public Task DeactivateUser(Guid id);
+        public Task ChangeUserRole(Guid id, string Role);
     }
 }

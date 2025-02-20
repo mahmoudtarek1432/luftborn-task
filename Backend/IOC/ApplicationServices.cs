@@ -20,11 +20,12 @@ namespace IOC
         public static void AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITokenClaimsService, IdentityTokenClaimService>();
 
             //command handlers
             services.AddScoped<IRequestHandler<UserDeleteCommand>, UserCommandHandlers>();
-            services.AddScoped<IRequestHandler<UserRoleUpdatedCommand>, UserCommandHandlers>();
+            services.AddScoped<IRequestHandler<UserRoleUpdateCommand>, UserCommandHandlers>();
 
             //event handlers
             services.AddScoped<INotificationHandler<UserDeletedEvent>, UserEventHandlers>();

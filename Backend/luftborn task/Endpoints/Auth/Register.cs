@@ -23,7 +23,7 @@ namespace luftborn_task.Endpoints.Auth
 
         public override void Configure()
         {
-            Post("api/v1/users/register");
+            Post("api/v1/Auth/register");
             AllowAnonymous();
             DontCatchExceptions();
         }

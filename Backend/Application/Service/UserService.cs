@@ -1,5 +1,12 @@
-﻿using Application.Service.Abstraction;
+﻿using Application.Models;
+using Application.Service.Abstraction;
+using Ardalis.Specification;
+using Domain.Commands;
 using Domain.Entities;
+using Domain.Events;
+using Domain.Repository;
+using Infrastructure.Bus;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,22 +17,41 @@ namespace Application.Service
 {
     public class UserService : IUserService
     {
-        public UserService() { }
-
-        public Task DeactivateUser(Guid id)
+        public readonly IEventHandler _eventHandler;
+        public readonly IRepository<User> _readUserRepo;
+        public UserService(IRepository<User> readUserRepo, IEventHandler eventHandler)
         {
-            throw new NotImplementedException();
-
+            _readUserRepo = readUserRepo;
+            _eventHandler = eventHandler;
         }
 
-        public Task DeleteUser(Guid id)
+        public async Task ChangeUserRole(Guid id, string role)
         {
-            throw new NotImplementedException();
+            await _eventHandler.SendCommand(new UserRoleUpdateCommand(id,role));
         }
 
-        public Task<IEnumerable<User>> GetUserList()
+        public async Task DeleteUser(Guid id)
         {
-            throw new NotImplementedException();
+            await _eventHandler.SendCommand(new UserDeleteCommand(id));
+        }
+
+        public async Task<IEnumerable<UserListingDTO>> GetUserList()
+        {
+            var users = await _readUserRepo.ListAsync();
+
+            if(users == null || !users.Any())
+                return Array.Empty<UserListingDTO>();
+
+            return users.Select(u =>
+            
+                new UserListingDTO
+                {
+                    Id = u.Id,
+                    Email = u.Email,
+                    Role = u.Role,
+                    Name = u.ToString()
+                }
+            );
         }
     }
 }

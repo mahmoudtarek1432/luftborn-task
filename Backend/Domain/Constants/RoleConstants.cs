@@ -8,7 +8,9 @@ namespace Domain.Constants
 {
     public class RoleConstants
     {
-        public static string ADMIN = "Admin";
+        public static string ADMIN = "ADMIN";
         public static string USER = "USER";
+
+        public static List<string> Roles = new List<string> { ADMIN, USER };
     }
 }

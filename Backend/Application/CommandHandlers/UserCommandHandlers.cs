@@ -1,17 +1,19 @@
-﻿using Domain.Entities;
+﻿using Domain.Constants;
+using Domain.Entities;
 using Domain.Events;
 using Domain.Repository;
 using MediatR;
 using SharedKernel.Guards;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Commands.Handlers
 {
-    public class UserCommandHandlers : IRequestHandler<UserDeleteCommand>, IRequestHandler<UserRoleUpdatedCommand>
+    public class UserCommandHandlers : IRequestHandler<UserDeleteCommand>, IRequestHandler<UserRoleUpdateCommand>
     {
         private readonly IRepository<User> _userRepository;
         public UserCommandHandlers(IRepository<User> userRepository)
@@ -30,12 +32,15 @@ namespace Domain.Commands.Handlers
             await _userRepository.DeleteAsync(user);
         }
 
-        public async Task Handle(UserRoleUpdatedCommand request, CancellationToken cancellationToken)
+        public async Task Handle(UserRoleUpdateCommand request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetByIdAsync(request.UserId);
 
             if (user == null)
                 throw new BusinessLogicException("User not found");
+
+            if(!RoleConstants.Roles.Any(e => e == request.Role))
+                throw new BusinessLogicException("Invalid Role");
 
             user.SetRole(request.Role);
 

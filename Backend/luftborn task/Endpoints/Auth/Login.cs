@@ -21,7 +21,7 @@ public class Login : Endpoint<LoginRequest, LoginResponse>
     }
     public override void Configure()
     {
-        Post("api/v1/users/Login");
+        Post("api/v1/Auth/Login");
         AllowAnonymous();
         DontCatchExceptions();
     }

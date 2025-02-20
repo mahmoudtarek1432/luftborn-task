@@ -31,7 +31,7 @@ namespace Infrastructure.Repository
 
         public void Store(StoredEvent theEvent)
         {
-            _ctx.EventStoreDBSet.InsertOne(theEvent);
+            _ctx.EventStoreDBSet?.InsertOne(theEvent);
         }
     }
 }
