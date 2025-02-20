@@ -1,14 +1,10 @@
 ﻿using Application.Service.Abstraction;
-using Domain.Constants;
 using Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
+using SharedKernel.Constants;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Application.Service;
