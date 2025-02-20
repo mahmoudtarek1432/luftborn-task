@@ -27,11 +27,11 @@ namespace Application.Service
         public async Task<User> Register(RegisterRequest model)
         {
 
-            var mobileSpec = new UserExistSpec(model.Mobile, model.Email);
-            var mobileExist = await _userRepository.AnyAsync(mobileSpec);
+            var userExistSpec = new UserExistSpec(model.Mobile, model.Email);
+            var userExist = await _userRepository.AnyAsync(userExistSpec);
 
-            if(mobileExist)
-                throw new BusinessLogicException("Mobile number already exist");
+            if(userExist)
+                throw new BusinessLogicException("Mobile number or email is associated with an existing user");
 
             var user = new User(model.FirstName, model.LastName, model.Email, model.Password)
                             .ValidateFirstName(model.FirstName)

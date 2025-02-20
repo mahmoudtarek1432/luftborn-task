@@ -15,8 +15,8 @@ namespace Infrastructure.Repository
     public class EventStoreMongoRepository : IEventStoreRepository
     {
         private readonly EventStoreDatabase _ctx;
-        private readonly ILogger _logger;
-        public EventStoreMongoRepository(ILogger logger)
+        private readonly ILogger<EventStoreMongoRepository> _logger;
+        public EventStoreMongoRepository(ILogger<EventStoreMongoRepository> logger)
         {
             _ctx = new EventStoreDatabase();
             _logger = logger;
