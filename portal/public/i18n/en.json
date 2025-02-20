@@ -73,45 +73,6 @@
         }
     },
     "dashboardPage":{
-        "company": "Company Details"
-    },
-    "CompanyPage":{
-        "enName":{
-            "title": "English Name",
-            "error": "This field is Required"
-        },
-        "arName":{
-            "title": "Arabic Name",
-            "error": "This field is Required"
-        },
-        "city":{
-            "title": "City",
-            "error": "This field is Required"
-        },
-        "country":{
-            "title": "country",
-            "error": "This field is Required"
-        },
-        "website":{
-            "title": "Website",
-            "error": "This field is Required"
-        },
-        "street":{
-            "title": "Street",
-            "error": "This field is Required"
-        },
-        "postalCode":{
-            "title": "Postal Code",
-            "error": "This field is Required"
-        },
-        "citySubDivision":{
-            "title": "City Sub Division",
-            "error": "This field is Required"
-        },
-        "registrationNumber":{
-            "title": "Registration Number",
-            "error": "This field is Required"
-        },
-        "submit": "Submit"
+        "users": "Users"
     }
 }

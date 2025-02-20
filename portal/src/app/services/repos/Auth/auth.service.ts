@@ -16,12 +16,12 @@ export class AuthService {
 
   login(request: loginRequestDto):Observable<loginResponseDto>
   {
-    return this.http.post<loginResponseDto>(environment.baseUrl+'users/login', request)
+    return this.http.post<loginResponseDto>(environment.baseUrl+'auth/login', request)
   }
 
   Register(request: RegisterRequest):Observable<RegisterResponse>
   {
-    return this.http.post<RegisterResponse>(environment.baseUrl+'users/Register', request)
+    return this.http.post<RegisterResponse>(environment.baseUrl+'auth/Register', request)
   }
 
   isLoggedIn(): boolean{
