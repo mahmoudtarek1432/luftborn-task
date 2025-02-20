@@ -36,5 +36,4 @@ namespace luftborn_task.Endpoints.Auth
             await SendAsync(new BaseResponse { StatusCode = StatusCodes.Status200OK, Message = "User Created"});
         }
     }
-
 }

@@ -40,5 +40,25 @@ namespace Application.Service
             var savedUser = await _userRepository.AddAsync(user);
             return savedUser;
         }
+
+        public async Task<User> Login(string email, string password)
+        {
+            var emailSpec = new UsersFilterByEmailSpec(email);
+            
+            var user = await _userRepository.FirstOrDefaultAsync<User>(emailSpec);
+
+            if (user == null)
+                throw new BusinessLogicException("User not found");
+
+            user.ValidateLogin(password);
+
+            var token = _tokenService.GetTokenAsync(user.TokenAuthInfo());
+
+            LoginResponse response = new LoginResponse(true, "logged in!")
+            {
+                Token = token,
+                UserInfo = _mapper.Map<UserLoginDto>(user)
+            };
+        }
     }
 }
