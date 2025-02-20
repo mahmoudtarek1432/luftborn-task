@@ -11,5 +11,6 @@ namespace Application.Service.Abstraction
     public interface IAuthService
     {
         Task<User> Register(RegisterRequest model);
+        Task<(string token, User user)> Login(string email, string password);
     }
 }

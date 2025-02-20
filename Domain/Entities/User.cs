@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Domain.Entities
         public string Mobile { get; private set; }
         public string HashedPassword { get; private set; }
         public UserVerification UserVerification { get; set; }
-        public Guid Role { get; private set; }
+        public string Role { get; private set; }
  
         public User(string firstName, string lastName, string email, string password) : this()
         {
@@ -127,10 +128,10 @@ namespace Domain.Entities
             var hashedLoginPassword = PasswordHash(loginPassword);
             if (hashedLoginPassword == HashedPassword)
                 return this;
-            throw new ArgumentException("Wrong Password");
+            throw new BusinessLogicException("Wrong Password");
         }
 
-        public User SetRole(Guid role)
+        public User SetRole(string role)
         {
             Role = role;
             return this;
@@ -145,6 +146,18 @@ namespace Domain.Entities
         {
             UserVerification = userVerification;
             return this;
+        }
+
+        public AuthenticationInfo TokenAuthInfo()
+        {
+            return new AuthenticationInfo
+            {
+                UserID = Id,
+                UserName = this.ToString(),
+                Email = Email,
+                Mobile = Mobile,
+                PRole = Role
+            };
         }
 
         private User() 

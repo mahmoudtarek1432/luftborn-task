@@ -15,6 +15,7 @@ namespace IOC
         public static void AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ITokenClaimsService, IdentityTokenClaimService>();
         }
     }
 }

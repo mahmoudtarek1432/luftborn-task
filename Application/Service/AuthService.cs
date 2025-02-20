@@ -16,6 +16,7 @@ namespace Application.Service
     public class AuthService : IAuthService
     {
         public IRepository<User> _userRepository;
+        public ITokenClaimsService _tokenService;
         public AuthService(IRepository<User> userRepository)
         {
             _userRepository = userRepository;
@@ -41,7 +42,7 @@ namespace Application.Service
             return savedUser;
         }
 
-        public async Task<User> Login(string email, string password)
+        public async Task<(string token, User user)> Login(string email, string password)
         {
             var emailSpec = new UsersFilterByEmailSpec(email);
             
@@ -54,11 +55,7 @@ namespace Application.Service
 
             var token = _tokenService.GetTokenAsync(user.TokenAuthInfo());
 
-            LoginResponse response = new LoginResponse(true, "logged in!")
-            {
-                Token = token,
-                UserInfo = _mapper.Map<UserLoginDto>(user)
-            };
+            return (token, user);
         }
     }
 }

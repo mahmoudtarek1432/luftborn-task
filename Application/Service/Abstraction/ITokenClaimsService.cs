@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Service.Abstraction
 {
-    interface ITokenClaimsService
+    public interface ITokenClaimsService
     {
         string GetTokenAsync(AuthenticationInfo authenticationInfo);
     }
