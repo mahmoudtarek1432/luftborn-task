@@ -21,6 +21,6 @@ export class UserService {
   }
 
   changeRole(id: string, role: string){
-    return this.http.put<BaseResponse<unknown>>(environment.baseUrl+'user/'+id+'/role/'+role,{})
+    return this.http.patch<BaseResponse<unknown>>(environment.baseUrl+'user/'+id+'/role/'+role,{})
   }
 }

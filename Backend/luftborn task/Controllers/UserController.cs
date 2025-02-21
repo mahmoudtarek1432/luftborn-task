@@ -34,7 +34,7 @@ namespace luftborn_task.Controllers
         }
 
         [Authorize(Roles = "ADMIN")]
-        [HttpPut("api/v1/user/{id}/Role/{role}")]
+        [HttpPatch("api/v1/user/{id}/Role/{role}")]
         public async Task<IActionResult> UpdateUserRole(Guid id, string role)
         {
             await _userService.ChangeUserRole(id, role);
